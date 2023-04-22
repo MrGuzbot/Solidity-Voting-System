@@ -1,6 +1,6 @@
 # Testing Methodology
 
-We used a combination of automated and manual testing methods to ensure the functionality of the voting system. We created a suite of automated tests using the Truffle testing framework, which allowed us to quickly and easily test various aspects of the system's functionality. In addition to automated tests, we also conducted manual tests to ensure the usability of the system and to identify any potential issues or bugs.
+I used a combination of automated and manual testing methods to ensure the functionality of the voting system. We created a suite of automated tests using the Truffle testing framework, which allowed us to quickly and easily test various aspects of the system's functionality. In addition to automated tests, we also conducted manual tests to ensure the usability of the system and to identify any potential issues or bugs.
 
 # Test Results
 Our automated and manual testing methods produced the following results:
