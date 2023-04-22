@@ -2,10 +2,19 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>My Voting System</title>
+    <title>Voting System</title>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <h1>My Voting System</h1>
+    <h1>Voting System</h1>
+    <form>
+      <h2>Candidates:</h2>
+      <ul id="candidates-list"></ul>
+      <h2>Vote:</h2>
+      <label for="candidate-name">Enter candidate name:</label>
+      <input type="text" id="candidate-name" name="candidate-name">
+      <button type="button" onclick="vote()">Vote</button>
+    </form>
+    <script src="app.js"></script>
   </body>
 </html>
