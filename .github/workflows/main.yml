@@ -1,0 +1,2 @@
+- name: Install alchemy-sdk
+  run: npm install alchemy-sdk
