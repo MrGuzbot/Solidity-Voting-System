@@ -1,39 +1,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Voting System User Interface</title>
-    <!-- Load the Web3.js library, which allows the UI to interact with the Ethereum blockchain -->
-    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
-    <!-- Load the app.js file, which initializes the Web3.js library and connects to the contract -->
-    <script src="app.js"></script>
-    <!-- Load the script.js file, which contains functions for interacting with the contract and updating the UI -->
-    <script src="script.js"></script>
-    <!-- Load the style.css file, which styles the UI -->
-    <link rel="stylesheet" href="style.css">
+	<meta charset="utf-8">
+	<title>Voting System</title>
+	<!-- Link to the CSS file -->
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Voting System User Interface</h1>
-        <p>Please enter the name of a candidate:</p>
-        <input type="text" id="candidateName">
-        <button onclick="addCandidate()">Add Candidate</button>
-        <hr>
-        <p>Candidates:</p>
-        <ul id="candidateList">
-            <!-- This list will be populated dynamically by the script.js file -->
-        </ul>
-        <hr>
-        <p>Please select a candidate to vote for:</p>
-        <select id="voteCandidate">
-            <!-- This dropdown will be populated dynamically by the script.js file -->
-        </select>
-        <button onclick="vote()">Vote</button>
-        <hr>
-        <p>Results:</p>
-        <ul id="resultList">
-            <!-- This list will be populated dynamically by the script.js file -->
-        </ul>
-    </div>
+	<div class="container">
+		<header>
+			<h1>Voting System</h1>
+		</header>
+		<main>
+			<!-- Form to add a new candidate -->
+			<form id="add-candidate-form">
+				<label for="candidate-name">Candidate name:</label>
+				<input type="text" id="candidate-name" required>
+				<button type="submit" id="add-candidate-btn">Add candidate</button>
+			</form>
+			<!-- Table to display the list of candidates and their vote counts -->
+			<table id="candidates-table">
+				<thead>
+					<tr>
+						<th>Candidate name</th>
+						<th>Votes</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- Table rows will be dynamically generated -->
+				</tbody>
+			</table>
+			<!-- Form to cast a vote -->
+			<form id="vote-form">
+				<label for="candidate-select">Select a candidate:</label>
+				<select id="candidate-select" required>
+					<option value="" disabled selected>Select a candidate</option>
+					<!-- Options will be dynamically generated -->
+				</select>
+				<button type="submit" id="vote-btn">Vote</button>
+			</form>
+		</main>
+	</div>
+	<!-- Link to the JavaScript files -->
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<script src="app.js"></script>
+	<script src="script.js"></script>
 </body>
 </html>
