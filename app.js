@@ -1,31 +1,62 @@
-window.addEventListener('load', function() {
-  // Connect to the Ethereum network using MetaMask
-  if (typeof web3 !== 'undefined') {
-    web3 = new Web3(web3.currentProvider);
-  } else {
-    alert("Please install MetaMask to use this dApp!");
+// Set up the web3 provider
+const web3Provider = new Web3.providers.HttpProvider("http://127.0.0.1:8545");
+const web3 = new Web3(web3Provider);
+
+// Set up the contract instance
+const contractAddress = "0x123456...";
+const contractAbi = [/* ABI of the contract */];
+const contract = new web3.eth.Contract(contractAbi, contractAddress);
+
+// Handle form submission
+document.querySelector("form").addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const candidate = event.target.elements.candidate.value;
+  const votes = parseInt(event.target.elements.votes.value);
+
+  // Call the contract method to add a new candidate
+  await contract.methods.addCandidate(candidate, votes).send({ from: /* sender address */ });
+
+  // Clear the form
+  event.target.reset();
+
+  // Update the candidate list
+  updateCandidateList();
+});
+
+// Update the candidate list
+async function updateCandidateList() {
+  const candidateList = document.querySelector("ul");
+
+  // Clear the current list of candidates
+  while (candidateList.firstChild) {
+    candidateList.removeChild(candidateList.firstChild);
   }
 
-  // Get the contract instance
-  const contractAddress = "CONTRACT_ADDRESS_GOES_HERE";
-  const contractABI = ABI_GOES_HERE;
-  const contract = new web3.eth.Contract(contractABI, contractAddress);
+  // Get the list of candidates from the contract
+  const candidates = await contract.methods.getCandidates().call();
 
-  // Listen for form submissions
-  const form = document.getElementById("voting-form");
-  form.addEventListener('submit', function(event) {
-    event.preventDefault();
-    const candidate1 = document.getElementById("candidate1").value;
-    const candidate2 = document.getElementById("candidate2").value;
-    const account = web3.eth.accounts[0];
+  // Add each candidate to the list
+  for (const candidate of candidates) {
+    const li = document.createElement("li");
+    li.innerHTML = `<span>${candidate.name}</span> - ${candidate.votes} votes <button data-candidate="${candidate.name}">Vote</button>`;
+    candidateList.appendChild(li);
+  }
 
-    // Submit the vote transaction
-    contract.methods.vote(candidate1, candidate2).send({from: account})
-      .then(function() {
-        alert("Vote submitted successfully!");
-      })
-      .catch(function(error) {
-        alert("Vote submission failed: " + error);
-      });
-  });
-});
+  // Add event listeners for the Vote buttons
+  const voteButtons = document.querySelectorAll("li button");
+  for (const button of voteButtons) {
+    button.addEventListener("click", async (event) => {
+      const candidateName = event.target.dataset.candidate;
+
+      // Call the contract method to vote for the candidate
+      await contract.methods.voteForCandidate(candidateName).send({ from: /* sender address */ });
+
+      // Update the candidate list
+      updateCandidateList();
+    });
+  }
+}
+
+// Update the candidate list when the page loads
+updateCandidateList();
