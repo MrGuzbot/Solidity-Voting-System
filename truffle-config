@@ -1,0 +1,21 @@
+const HDWalletProvider = require('@truffle/hdwallet-provider');
+const infuraKey = "YOUR_INFURA_PROJECT_ID";
+const mnemonic = "YOUR_METAMASK_MNEMONIC";
+
+module.exports = {
+  networks: {
+    goerli: {
+      provider: () => new HDWalletProvider(mnemonic, `https://goerli.infura.io/v3/${infuraKey}`),
+      network_id: 5,
+      gas: 5500000,
+      confirmations: 2,
+      timeoutBlocks: 200,
+      skipDryRun: true
+    },
+  },
+  compilers: {
+    solc: {
+      version: "0.8.0",
+    }
+  }
+};
