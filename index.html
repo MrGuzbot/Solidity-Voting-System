@@ -1,49 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Voting System</title>
-	<!-- Link to the CSS file -->
-	<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting System</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<div class="container">
-		<header>
-			<h1>Voting System</h1>
-		</header>
-		<main>
-			<!-- Form to add a new candidate -->
-			<form id="add-candidate-form">
-				<label for="candidate-name">Candidate name:</label>
-				<input type="text" id="candidate-name" required>
-				<button type="submit" id="add-candidate-btn">Add candidate</button>
-			</form>
-			<!-- Table to display the list of candidates and their vote counts -->
-			<table id="candidates-table">
-				<thead>
-					<tr>
-						<th>Candidate name</th>
-						<th>Votes</th>
-					</tr>
-				</thead>
-				<tbody>
-					<!-- Table rows will be dynamically generated -->
-				</tbody>
-			</table>
-			<!-- Form to cast a vote -->
-			<form id="vote-form">
-				<label for="candidate-select">Select a candidate:</label>
-				<select id="candidate-select" required>
-					<option value="" disabled selected>Select a candidate</option>
-					<!-- Options will be dynamically generated -->
-				</select>
-				<button type="submit" id="vote-btn">Vote</button>
-			</form>
-		</main>
-	</div>
-	<!-- Link to the JavaScript files -->
-	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-	<script src="app.js"></script>
-	<script src="script.js"></script>
+    <header>
+        <h1>Voting System</h1>
+    </header>
+    <main>
+        <div class="voting-card">
+            <h2 class="voting-card__title">Choose Your Candidate</h2>
+            <form class="voting-card__form">
+                <label class="voting-card__option">
+                    <input type="radio" name="candidate" value="candidate-1">
+                    Candidate 1
+                </label>
+                <label class="voting-card__option">
+                    <input type="radio" name="candidate" value="candidate-2">
+                    Candidate 2
+                </label>
+                <label class="voting-card__option">
+                    <input type="radio" name="candidate" value="candidate-3">
+                    Candidate 3
+                </label>
+                <button class="voting-card__button" type="submit">Vote</button>
+            </form>
+        </div>
+        <div class="results-card">
+            <h2 class="results-card__title">Results</h2>
+            <ul class="results-card__list">
+                <li class="results-card__item">
+                    Candidate 1: <span class="results-card__percentage">30%</span>
+                </li>
+                <li class="results-card__item">
+                    Candidate 2: <span class="results-card__percentage">45%</span>
+                </li>
+                <li class="results-card__item">
+                    Candidate 3: <span class="results-card__percentage">25%</span>
+                </li>
+            </ul>
+        </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
