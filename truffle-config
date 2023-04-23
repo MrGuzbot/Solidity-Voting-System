@@ -1,5 +1,5 @@
 const HDWalletProvider = require('@truffle/hdwallet-provider');
-const infuraKey = "YOUR_INFURA_PROJECT_ID";
+const infuraKey = "2Opzaj6s3bs8iFc387EBzGSjJfv";
 const mnemonic = "YOUR_METAMASK_MNEMONIC";
 
 module.exports = {
